@@ -27,7 +27,14 @@ class App extends Component {
     }
 
     deleteNinja = (ninjaId) => {
+        let ninjas = this.state.ninjas
+                .filter(ninja => {
+                    return ninja.id !== ninjaId;
+                });
 
+        this.setState({
+            ninjas: ninjas
+        });
     }
 
     render() {
@@ -36,8 +43,10 @@ class App extends Component {
                 <h1>My first App</h1>
                 <p>Welcome</p>
 
-                <AddNinja addNinja={ this.addNinja } deleteNinja={ this.deleteNinja }/>
-                <Ninjas ninjas={ this.state.ninjas }/>
+                <AddNinja addNinja={ this.addNinja } />
+                <br />
+                <br />
+                <Ninjas ninjas={ this.state.ninjas } deleteNinja={ this.deleteNinja }/>
             </div>
         );
     }
